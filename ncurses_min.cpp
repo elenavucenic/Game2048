@@ -31,7 +31,7 @@ int main() {
     Plateau newt = plateauVide();
     Plateau ancienPlateau = plateauVide();
 
-    while (!estTerminé(plateau, ancienPlateau, s) && !estGagnant(plateau))
+    while (!estTerminé(plateau, ancienPlateau) && !estGagnant(plateau))
     {
         int c = getch();
         
