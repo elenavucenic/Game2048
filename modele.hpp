@@ -52,51 +52,29 @@ Plateau plateauInitial()
  **/
 Plateau Nouvelletuille(Plateau tab)
 {
-    int case_l, case_c;
-    do {
-        case_l = rand() % 4;
-        case_c = rand() % 4;
-    } while (tab[case_l][case_c] != 0);
-    tab[case_l][case_c] = tireDeuxOuQuatre();
-    return tab;
-}
-
-/** permet de savoir si une partie est terminée
- *  @param plateau un plateau
- *  @return true si le plateau est vide, false sinon
- **/
-bool estTerminé(Plateau plateau, Plateau plateau1) {
-    bool egal = true;
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            if (plateau[i][j] != plateau1[i][j])
-                egal = false;
-        }
-    }
-    return egal;
-}
-
-
-/** permet de savoir si une partie est gagnée
- * @param plateau un plateau
- * @return true si le plateau contient un 2048, false sinon
- **/
-bool estGagnant(Plateau plateau)
-{
+    bool vide = true;
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
-            if (plateau[i][j] == 2048)
-                return true;
-    return false;
+            if(tab[i][j]==0)
+                vide = false;
+    if(!vide){
+        int case_l, case_c;
+        do {
+            case_l = rand() % 4;
+            case_c = rand() % 4;
+        } while (tab[case_l][case_c] != 0);
+    
+        tab[case_l][case_c] = tireDeuxOuQuatre();
+    }
+    
+    return tab;
 }
-
-
 
 /** déplace les tuiles d'un plateau vers la gauche et les combine si possible
  *  @param plateau le plateau
  *  @return le plateau une fois déplacé vers la gauche
  **/
-Plateau déplacementGauche(Plateau plateau , int &score) {
+Plateau déplacementGauche(Plateau plateau , int& score) {
 
     Plateau newBoard(4, vector<int>(4, 0));
 
@@ -229,7 +207,7 @@ Plateau déplacement(Plateau plateau, int direction, int &score) {
         tab = déplacementDroite(plateau, score);
     else if (direction == 2)
         tab = déplacementHaut(plateau, score);
-    else
+    else 
         tab = déplacementBas(plateau, score);
     return tab;
 }
@@ -294,4 +272,38 @@ string dessine(Plateau brd)
         s = s + "*****************************";
     s = s + '\n';
     return s;
+}
+
+/** permet de savoir si une partie est terminée
+ *  @param plateau un plateau
+ *  @return true si le plateau est vide, false sinon
+ **/
+bool estTerminé(Plateau plateau, Plateau plateau1, int& s) {
+    if(plateau == plateau1) {
+        if(déplacement(plateau,0,s) == plateau) 
+            return false;
+        if(déplacement(plateau,1,s) == plateau) 
+            return false;
+        if(déplacement(plateau,2,s) == plateau) 
+            return false;
+        if(déplacement(plateau,3,s) == plateau) 
+            return false;
+        
+        return true;
+    }
+    return false;
+}
+
+
+/** permet de savoir si une partie est gagnée
+ * @param plateau un plateau
+ * @return true si le plateau contient un 2048, false sinon
+ **/
+bool estGagnant(Plateau plateau)
+{
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            if (plateau[i][j] == 2048)
+                return true;
+    return false;
 }
