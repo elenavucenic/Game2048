@@ -1,42 +1,61 @@
+#include "modele.hpp"
 #include <curses.h>
-#inlcude "modele.hpp"
 #include <iostream>
 #include <ctime>
-
+#include <cstdlib>
 using namespace std;
 
 using Plateau = vector<vector<int>>;
 
 int main() {
+
+    // Inicijalizacija ncurses
+    initscr();
+    cbreak();
+    keypad(stdscr, TRUE);
+
+    // Kreiranje prozora
+    int height = 20, width = 20, start_y = 0, start_x = 0;
+    WINDOW *win = newwin(height, width, start_y, start_x);
+    wrefresh(win);
+
+    int c;
+
     int s = 0;
     srand(time(0));
     Plateau t = plateauInitial();
-    cout << "Score: " << s;
-    cout << endl << endl; 
-    cout << dessine(t);
-    char cdir[128];
-    cdir['a'] = 0;
-    cdir['d'] = 1;
-    cdir['w'] = 2;
-    cdir['s'] = 3;
-    Plateau newgamet = plateauVide();
+    printw("%d", s);
+    printw("%s", dessine(t).c_str());
+    refresh();   
+
     Plateau newt = plateauVide();
     Plateau ancienPlateau = plateauVide();
+
     while (!estTerminé(t, ancienPlateau) && !estGagnant(t))
     {
         ancienPlateau = t;
-        char c;
-        cin >> c;
-        int dircurrent = cdir[c];
-        // cout << dircurrent << endl; //test wasd
-        newt = déplacement(t, dircurrent, s);
-        newgamet = Nouvelletuille(newt);
-        system("cls");
-        cout << "Score: " << s;
-        cout << endl << endl;
-        cout << dessine(newgamet);
-        t = newgamet;
-    }
-    return 0;
+        c = getch();
+        
+        if (c == KEY_LEFT) {
+            newt = déplacement(t,0,s);  
+        } else if (c == KEY_RIGHT) {
+            newt = déplacement(t,1,s); 
+        } else if (c == KEY_UP) {
+            newt = déplacement(t,2,s); 
+        } else if (c == KEY_DOWN) {
+            newt = déplacement(t,3,s); 
+        }
+    
+        t = Nouvelletuille(newt);
+                
+        clear();
+        printw("%d", s);
+        printw("%s", dessine(t).c_str());
+        refresh(); 
+    } 
 
+    delwin(win);
+    endwin();
+    return 0;
 }
+
