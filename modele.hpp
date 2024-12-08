@@ -278,15 +278,16 @@ string dessine(Plateau brd)
  *  @param plateau un plateau
  *  @return true si le plateau est vide, false sinon
  **/
-bool estTerminé(Plateau plateau, Plateau plateau1, int& s) {
+bool estTerminé(Plateau plateau, Plateau plateau1) {
     if(plateau == plateau1) {
-        if(déplacement(plateau,0,s) == plateau) 
+        int s1 = 0;
+        if(déplacement(plateau,0,s1) == plateau) 
             return false;
-        if(déplacement(plateau,1,s) == plateau) 
+        if(déplacement(plateau,1,s1) == plateau) 
             return false;
-        if(déplacement(plateau,2,s) == plateau) 
+        if(déplacement(plateau,2,s1) == plateau) 
             return false;
-        if(déplacement(plateau,3,s) == plateau) 
+        if(déplacement(plateau,3,s1) == plateau) 
             return false;
         
         return true;
