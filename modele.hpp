@@ -242,7 +242,7 @@ string dessine(Plateau brd)
 {
     string s;
     int ct = 0;
-    s = s + "*****************************";
+    s = s + "\n*****************************";
     s = s + '\n';
     for (int i = 0; i < 4; i++)
     {
