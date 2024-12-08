@@ -9,48 +9,48 @@ using Plateau = vector<vector<int>>;
 
 int main() {
 
-    // Inicijalizacija ncurses
     initscr();
     cbreak();
     keypad(stdscr, TRUE);
 
-    // Kreiranje prozora
     int height = 20, width = 20, start_y = 0, start_x = 0;
     WINDOW *win = newwin(height, width, start_y, start_x);
     wrefresh(win);
-
-    int c;
+    
+    start_color();
+    init_pair(1, COLOR_WHITE, COLOR_BLUE); 
+    attron(COLOR_PAIR(1));
 
     int s = 0;
     srand(time(0));
-    Plateau t = plateauInitial();
+    Plateau plateau = plateauInitial();
     printw("%d", s);
-    printw("%s", dessine(t).c_str());
+    printw("%s", dessine(plateau).c_str());
     refresh();   
 
     Plateau newt = plateauVide();
     Plateau ancienPlateau = plateauVide();
 
-    while (!estTerminé(t, ancienPlateau) && !estGagnant(t))
+    while (!estTerminé(plateau, ancienPlateau, s) && !estGagnant(plateau))
     {
-        ancienPlateau = t;
-        c = getch();
+        int c = getch();
         
         if (c == KEY_LEFT) {
-            newt = déplacement(t,0,s);  
+            newt = déplacement(plateau,0,s);  
         } else if (c == KEY_RIGHT) {
-            newt = déplacement(t,1,s); 
+            newt = déplacement(plateau,1,s); 
         } else if (c == KEY_UP) {
-            newt = déplacement(t,2,s); 
+            newt = déplacement(plateau,2,s); 
         } else if (c == KEY_DOWN) {
-            newt = déplacement(t,3,s); 
+            newt = déplacement(plateau,3,s); 
         }
-    
-        t = Nouvelletuille(newt);
+                
+        ancienPlateau = plateau;
+        plateau = Nouvelletuille(newt);
                 
         clear();
         printw("%d", s);
-        printw("%s", dessine(t).c_str());
+        printw("%s", dessine(plateau).c_str());
         refresh(); 
     } 
 
