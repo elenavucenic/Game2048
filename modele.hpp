@@ -25,7 +25,7 @@ int tireDeuxOuQuatre()
  **/
 Plateau plateauVide()
 {
-    Plateau a = { {0, 0, 0, 0},{0, 0, 0, 0},{0, 0, 0, 0},{0, 0, 0, 0} };
+    Plateau a = { {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0} };
     return a;
 }
 
@@ -276,7 +276,7 @@ string dessine(Plateau brd)
 
 /** permet de savoir si une partie est terminée
  *  @param plateau un plateau
- *  @return true si le plateau est vide, false sinon
+ *  @return true si le plateau n'a pas plus d'option pour deplacement, false sinon
  **/
 bool estTerminé(Plateau plateau, Plateau plateau1) {
     if(plateau == plateau1) {
