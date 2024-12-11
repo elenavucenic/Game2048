@@ -9,6 +9,8 @@ using namespace std;
 using Plateau = vector<vector<int>>;
 
 /** génère aléatoirement un 2 ou un 4 avec des probabilités respectives de 9/10 et 1/10
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Fonction testée pour garantir que les résultats sont 2 ou 4 avec les bonnes probabilités. Aucun bug connu.
  *  @return 2 ou 4
  **/
 int tireDeuxOuQuatre()
@@ -21,6 +23,8 @@ int tireDeuxOuQuatre()
 }
 
 /** génère un plateau de dimensions 4*4 ne contenant que des 0
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Cette fonction est simple et testée, elle fonctionne sans erreur.
  *  @return un plateau vide
  **/
 Plateau plateauVide()
@@ -31,6 +35,9 @@ Plateau plateauVide()
 
 /** génère deux nombres sur des cases aléatoires d'un plateau vide
  *  @return un plateau en début de jeu
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Fonction testée.
+ *  @test: Lors du premier lancement, un plateau est généré avec deux tuiles.
  **/
 Plateau plateauInitial()
 {
@@ -49,6 +56,8 @@ Plateau plateauInitial()
 
 /** génère un nombre sur une cases aléatoire du plateau
  *  @return le plateau de jeu
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Fonction testée.
  **/
 Plateau Nouvelletuille(Plateau tab)
 {
@@ -73,6 +82,8 @@ Plateau Nouvelletuille(Plateau tab)
 /** déplace les tuiles d'un plateau vers la gauche et les combine si possible
  *  @param plateau le plateau
  *  @return le plateau une fois déplacé vers la gauche
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Testée sur plusieurs cas d'usage.
  **/
 Plateau déplacementGauche(Plateau plateau , int& score) {
 
@@ -103,6 +114,8 @@ Plateau déplacementGauche(Plateau plateau , int& score) {
 /** déplace les tuiles d'un plateau vers la droite et les combine si possible
  *  @param plateau le plateau
  *  @return le plateau une fois déplacé vers la droite
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Testée sur plusieurs cas d'usage.
  **/
 Plateau déplacementDroite(Plateau plateau, int& score) {
     Plateau newBoard(4, vector<int>(4, 0));
@@ -133,6 +146,8 @@ Plateau déplacementDroite(Plateau plateau, int& score) {
 /** déplace les tuiles d'un plateau vers le haut et les combine si possible
  *  @param plateau le plateau
  *  @return le plateau une fois déplacé vers le haut
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Testée sur plusieurs cas d'usage.
  **/
 Plateau déplacementHaut(Plateau plateau, int& score) {
     Plateau newBoard(4, vector<int>(4, 0));
@@ -166,6 +181,8 @@ Plateau déplacementHaut(Plateau plateau, int& score) {
 /** déplace les tuiles d'un plateau vers le bas et les combine si possible
  *  @param plateau le plateau
  *  @return le plateau une fois déplacé vers le bas
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Testée sur plusieurs cas d'usage.
  **/
 Plateau déplacementBas(Plateau plateau, int& score) {
     Plateau newBoard(4, vector<int>(4, 0));
@@ -198,6 +215,8 @@ Plateau déplacementBas(Plateau plateau, int& score) {
  *  @param plateau le plateau
  *  @param direction la direction
  *  @return le plateau déplacé dans la direction
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Testée sur plusieurs cas d'usage.
  **/
 Plateau déplacement(Plateau plateau, int direction, int &score) {
     Plateau tab;
@@ -215,6 +234,8 @@ Plateau déplacement(Plateau plateau, int direction, int &score) {
 
 /** affiche un plateau
  * @param p le plateau
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Testée sur plusieurs cas d'usage.
  **/
 string dessine(Plateau brd)
 {
@@ -277,6 +298,8 @@ string dessine(Plateau brd)
 /** permet de savoir si une partie est terminée
  *  @param plateau un plateau
  *  @return true si le plateau n'a pas plus d'option pour deplacement, false sinon
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Testée sur plusieurs cas d'usage.
  **/
 bool estTerminé(Plateau plateau, Plateau plateau1) {
     if(plateau == plateau1) {
@@ -299,6 +322,8 @@ bool estTerminé(Plateau plateau, Plateau plateau1) {
 /** permet de savoir si une partie est gagnée
  * @param plateau un plateau
  * @return true si le plateau contient un 2048, false sinon
+ *  @author Elena Vucenic et Bianca Oancea (2 personnes)
+ *  @confiance Testée sur plusieurs cas d'usage.
  **/
 bool estGagnant(Plateau plateau)
 {
